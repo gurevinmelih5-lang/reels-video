@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "id": "ornek-etkinlik",
+  "brand": "ornek-marka",
+  "style": "dynamic",
+  "scenes": [
+    {
+      "type": "montage",
+      "duration": 2.0,
+      "transition": "cut",
+      "items": [
+        {
+          "src": "masa-cicek.jpeg"
+        },
+        {
+          "src": "DSC09559.JPG",
+          "focus": {
+            "x": 0.38,
+            "y": 0.4
+          }
+        },
+        {
+          "src": "masa-ustten.jpeg"
+        },
+        {
+          "src": "BVN04260.JPG",
+          "focus": {
+            "x": 0.5,
+            "y": 0.45
+          }
+        },
+        {
+          "src": "BVN04258.JPG"
+        },
+        {
+          "src": "masa-uzum.jpeg"
+        },
+        {
+          "src": "BVN04261.JPG"
+        },
+        {
+          "src": "BVN04459.JPG"
+        }
+      ],
+      "text": {
+        "text": "Bir sempozyumun *3 günü*",
+        "position": "center"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 1.5,
+      "transition": "zoom_punch",
+      "src": "DSC09559.JPG",
+      "motion": "punch",
+      "focus": {
+        "x": 0.38,
+        "y": 0.4
+      },
+      "text": {
+        "text": "*15 saniyede*",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 1.75,
+      "transition": "whip",
+      "src": "A7509659.JPG",
+      "motion": "pan_up",
+      "text": {
+        "text": "Sahnede sunumlar",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 2.0,
+      "transition": "whip",
+      "src": "fuaye-yuruyus.mp4",
+      "videoStart": 9.0,
+      "motion": "zoom_in",
+      "text": {
+        "text": "Fuayede kokteyl masaları",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "montage",
+      "duration": 2.25,
+      "transition": "whip",
+      "motion": "punch",
+      "items": [
+        {
+          "src": "masa-simit.jpeg"
+        },
+        {
+          "src": "masa-cicek.jpeg"
+        },
+        {
+          "src": "masa-ustten.jpeg"
+        }
+      ],
+      "text": {
+        "text": "Her masa *ayrı tasarım*",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 1.75,
+      "transition": "whip",
+      "src": "BVN04459.JPG",
+      "motion": "zoom_in",
+      "text": {
+        "text": "Kahve arası, *kokteyl ayarında*",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 1.5,
+      "transition": "whip",
+      "src": "BVN04260.JPG",
+      "motion": "punch",
+      "focus": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "text": {
+        "text": "Sıcak servis",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 1.5,
+      "transition": "whip",
+      "src": "DSC09559.JPG",
+      "motion": "punch",
+      "focus": {
+        "x": 0.82,
+        "y": 0.45
+      },
+      "text": {
+        "text": "Canlı müzik",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "cta",
+      "duration": 2.5,
+      "transition": "zoom_punch",
+      "headline": "*Marka* Adı",
+      "background": "masa-cicek.jpeg",
+      "cta": "Etkinliğiniz için yazın",
+      "showLogo": false,
+      "contact": [
+        "instagram",
+        "address"
+      ]
+    }
+  ]
+}

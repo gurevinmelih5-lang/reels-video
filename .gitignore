@@ -1,0 +1,9 @@
+node_modules/
+out/
+public/render/
+.cache/
+# Müşteri işleri ve markaları repoya girmez (public repo). Sadece demo örneği.
+jobs/*
+!jobs/demo-kuafor/
+brands/*
+!brands/demo-kuafor/
