@@ -7,8 +7,8 @@ description: Müşterinin fotoğraf ve videolarından markaya uygun, dinamik Ins
 
 Kullanıcı (ajans sahibi) bir müşteri klasörü ve kısa bir talimat verir. Sen o klasörden paylaşıma hazır bir Reels MP4'ü teslim edersin. **Planı sen yazarsın, render'ı kod yapar.** Kalite şablondan gelir; senin işin doğru kareyi, doğru sırayı ve doğru metni seçmek.
 
-- Proje: bu reponun klonlandığı klasör (bu bilgisayarda `C:\Users\LENOVO\Desktop\reels-video-ajani\`; aşağıda `<proje>`). Remotion 4, Node 24, git deposu.
-- Skill klasörü: `~/.claude/skills/reels-video/` (repodaki `skill/` klasörünün kopyası; aşağıda `<skill>`)
+- Proje (render motoru): `C:\Users\LENOVO\Desktop\reels-video-ajani\` (aşağıda `<proje>`). Remotion 4, Node 24, yerel git deposu; **GitHub'a gönderilmez**.
+- Skill klasörü: `~/.claude/skills/reels-video/` (aşağıda `<skill>`). Kendi git deposu; GitHub'daki `reels-video` reposu **sadece bu klasörü** içerir. Skill'i değiştirince burada commit edip push et.
 - Planın kuralları: `<proje>/src/schema.ts`. Plan yazmadan önce oku; alanlar ve sınırlar orada.
 - Örnek plan (dinamik stil, onaylanmış): `<skill>/references/ornek-plan.json`
 
@@ -34,7 +34,12 @@ Kullanıcı (ajans sahibi) bir müşteri klasörü ve kısa bir talimat verir. S
 - İş klasörü: `<proje>/jobs/<slug>/`. Dosyaları buraya **kopyala**. Adında boşluk dışında özel karakter, örneğin `(1)`, olan dosyaları anlamlı adlarla yeniden adlandır (`masa-cicek.jpeg`, `fuaye-yuruyus.mp4`). Şema parantezi reddeder.
 - Marka: `<proje>/brands/<slug>/brand.json` (ad, renkler, fontlar, logo, iletişim). `marka.md` varsa oradan al (bkz. `marka-kimligi` skill'i).
 - **Marka bilgisi uydurma.** Kullanıcının vermediği telefon, Instagram, adres ya da logo yoksa o alan boş kalır. Instagram profilleri giriş istiyor; giriş yapma, kullanıcıdan iste.
-- Müşteri dosyaları git'e girmez; `.gitignore` sadece `plan.json`'u alır.
+- **Logo:** Beyaz veya açık zeminliyse (yapay zekâyla üretilen logolar genelde böyle) önce şeffaflaştır, sonra koyu zeminde gözle kontrol et:
+  ```
+  python -I <skill>/scripts/logo-seffaf.py "<logo>" <proje>/brands/<slug>/logo.png
+  ```
+  Script altın veya renkli logolar için yazıldı. İçinde beyaz öğe olan logolarda beyaz kısımlar da silinir; o durumda kullanıcıdan şeffaf PNG iste. Marka `accent` rengini logodaki ana renkten al.
+- Müşteri işleri ve markaları git'e girmez; `.gitignore` demo dışında `jobs/*` ve `brands/*`'ı dışarıda tutar.
 
 ## 3. Planı yaz
 
@@ -50,13 +55,20 @@ Varsayılanlar: `"style": "dynamic"`, 13–15 sn, ses yok (müziği kullanıcı 
 - Metin en fazla 4–5 kelime. Bir veya iki kelimeyi `*yıldız*` ile vurgula; altın kutuda çıkar. Her sahnede vurgu yapma.
 - Metinler sadece **görünen gerçeklere** dayanır: pankarttaki tarih, şehir, etkinlik adı; karede görünen yemek veya müzik. "Bütün organizasyonu biz yaptık" gibi doğrulanmamış iddia yok.
 - Hook bir sayı vaat ediyorsa ("15 saniyede") toplam süre ona uysun.
-- Kapanış: `cta`, `background` olarak markanın en iyi karesi (bulanıklaşır), `headline` işletme adı, kısa bir CTA ve var olan iletişim bilgileri.
+- Kapanış (`cta`, 2.75 sn civarı):
+  - `background`: markanın en iyi karesi (bulanıklaşır).
+  - Logo varsa `showLogo: true`. Logo işletme adını zaten gösteriyorsa `headline` yazma.
+  - Marka sloganı varsa `tagline` olarak ekle. Slogan İngilizceyse `"taglineLang": "en"` yaz; yoksa Türkçe büyük harf kuralı "DİSTİNCTİON" üretir.
+  - Slogan için marka dosyasında `fonts.accent` olarak logoya uyan bir serif seç (ör. Playfair Display).
+  - Kısa bir CTA ve var olan iletişim bilgileri.
 - Türkçe metinleri teslimden önce `stop-slop-tr` gözüyle kontrol et: klişe, "-mektedir", ünlem yok.
 
 **Kare seçimi:**
 - Hook ve metinli sahnelerde **içinde yazı/pankart olan kareleri kullanma**; yazılar birbirine biner.
 - Sponsor ve başka marka logolarını kadraja alma. Videoda o saniyeleri atla (`videoStart`).
 - Yatay fotoğraf 9:16'ya kırpılınca genişliğin yaklaşık üçte biri kalır. Özne kenarda kalıyorsa `focus.x` ile kaydır (örnek: üçlüden kemancı için `x: 0.82`).
+- **İnsanların yatayda yayıldığı kareler** (masa etrafında 3+ kişi, toplu fotoğraf): kırpma yapma, `"fit": "contain"` kullan. Fotoğraf tam genişlikte üstte durur, arkayı bulanık hali doldurur, metin altta boş alana düşer. Kullanıcının özellikle istediği kareye kendi sahnesini ve en az 2 sn ver.
+- Neredeyse aynı iki kare varsa (aynı masa, aynı kişiler) birini kullan ve kullanıcıya söyle.
 - Düşük çözünürlüklü videoları (720 px altı) kısa tut; render uyarı verir.
 
 ## 4. Storyboard → onay → render

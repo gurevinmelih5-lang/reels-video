@@ -64,7 +64,7 @@
     },
     {
       "type": "media",
-      "duration": 1.75,
+      "duration": 1.5,
       "transition": "whip",
       "src": "A7509659.JPG",
       "motion": "pan_up",
@@ -75,7 +75,7 @@
     },
     {
       "type": "media",
-      "duration": 2.0,
+      "duration": 1.5,
       "transition": "whip",
       "src": "fuaye-yuruyus.mp4",
       "videoStart": 9.0,
@@ -87,7 +87,7 @@
     },
     {
       "type": "montage",
-      "duration": 2.25,
+      "duration": 1.75,
       "transition": "whip",
       "motion": "punch",
       "items": [
@@ -108,7 +108,7 @@
     },
     {
       "type": "media",
-      "duration": 1.75,
+      "duration": 1.5,
       "transition": "whip",
       "src": "BVN04459.JPG",
       "motion": "zoom_in",
@@ -136,6 +136,21 @@
       "type": "media",
       "duration": 1.5,
       "transition": "whip",
+      "src": "BVN04261.JPG",
+      "motion": "zoom_out",
+      "focus": {
+        "x": 0.5,
+        "y": 0.55
+      },
+      "text": {
+        "text": "Deniz manzarasına *karşı*",
+        "position": "bottom"
+      }
+    },
+    {
+      "type": "media",
+      "duration": 1.5,
+      "transition": "whip",
       "src": "DSC09559.JPG",
       "motion": "punch",
       "focus": {
@@ -149,16 +164,17 @@
     },
     {
       "type": "cta",
-      "duration": 2.5,
+      "duration": 2.75,
       "transition": "zoom_punch",
-      "headline": "*Marka* Adı",
       "background": "masa-cicek.jpeg",
       "cta": "Etkinliğiniz için yazın",
-      "showLogo": false,
+      "showLogo": true,
       "contact": [
         "instagram",
         "address"
-      ]
+      ],
+      "tagline": "Marka sloganı",
+      "taglineLang": "tr"
     }
   ]
 }
